@@ -35,6 +35,8 @@ fn main() {
     // inclusive on the lower and upper bounds, so we need to specify 1..=100 to request a number
     // between 1 and 100 
     let secret_number = rand::thread_rng().gen_range(1..=100);
+    println!("guess number is: {secret_number}"); 
+    loop{
     println!("Please input your guess: ");
     
     // the code is printing a prompt starting with what the game is and requesting input from the
@@ -58,11 +60,19 @@ fn main() {
  
     // trim method on a String instance will eliminate any whitesspace at the beginning and end 
     let guess: u32 = guess.trim().parse().expect("Please tye a number!");
+    //The loop keyword creates an infinite loop, we'll add a loop to give user more chances at
+    //guessing the number 
     // comparing the huess to the secret number 
     match guess.cmp(&secret_number) {
         Ordering::Less => println!("Too Small"),
         Ordering::Greater => println!("Too big"),
-        Ordering::Equal => println!("You win!"),
+        Ordering::Equal => {
+            println!("You win!");
+            // when we guess then break and go outside of an infinite loop 
+            break;
+
+    }
+    }
     }
     
 }
